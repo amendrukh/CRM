@@ -1,7 +1,7 @@
 import { getLogin, getPassword } from "./var.js";
-import { generationId, validate, createInputSring, dateNow, showRestoranMenu } from "./functions.js";
+import { generationId, validate, createInputSring, dateNow } from "./functions.js";
 import { StoreElementCRM } from "./class.js";
-
+import {showRestoranMenu} from "./restoration";
 
 
 
@@ -133,6 +133,7 @@ function deleteItem(e) {
         if (localStorage.restorationBD) {
             let restorationBD = JSON.parse(localStorage.restorationBD);
             restorationBD = restorationBD.filter(el => el.id !== span.dataset.key);
+            tbody.innerHTML = ""
             showRestoranMenu()
             localStorage.restorationBD = JSON.stringify(restorationBD);
         }
