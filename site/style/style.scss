@@ -1,0 +1,54 @@
+body{
+    margin: 0;
+}
+
+ul{
+    background-color: blue;
+    display: flex;
+    width: 100%;
+    height: 20vh;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    li{
+        list-style: none;
+        text-align: center;
+        flex-grow: 1;
+        transition: background 400ms linear, color 400ms ease;
+        a{
+            color: yellow;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+    li:hover{
+        background: yellow;
+        a{
+            color: blue;
+        }
+    }
+}
+
+.video-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+    > * {
+        min-width: 25%;
+        max-width: 35%;
+        border: 1px solid black;
+        min-height: 350px;
+
+    }
+    video {
+        width: 100%;
+    }
+    :not(video){
+        padding: .5rem;
+    }
+}
