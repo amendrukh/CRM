@@ -12,4 +12,33 @@ class StoreElementCRM {
     }
 }
 
-export {StoreElementCRM}
+class videoElementCrm {
+    constructor(videoName = '', poster = '', url = '', description = '', keywords = [], dateNow = () => { }, id = () => { }) {
+        this.id = id();
+        this.date = dateNow();
+        this.videoName = videoName;
+        this.poster = poster;
+        this.url = url;
+        this.description = description;
+        this.keywords = keywords.split(',');
+        this.status = false;
+    }
+}
+
+class restoranElementCrm {
+    constructor(productName = '', productWeight = 0, ingridients = '',productQuantity = 0, description = '', price = 0, productimageUrl = '', keywords = [], dateNow = () => { }, id = () => { }) {
+        this.id = id();
+        this.date = dateNow();
+        this.productName = productName;
+        this.productWeigth = productWeight;
+        this.ingridients = ingridients;
+        this.productQuantity = productQuantity;
+        this.description = description;
+        this.price = price;
+        this.productimageUrl = productimageUrl;
+        this.keywords = keywords.split(',');
+        this.status = false;
+    }
+}
+
+export {StoreElementCRM, restoranElementCrm, videoElementCrm}

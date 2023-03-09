@@ -1,9 +1,9 @@
-import { hideModalEvent, showModalEvent } from "./events.js";
+import { hideModalEvent, showModalEvent, deleteItem } from "./events.js";
 import { createHTMLElement, createEditProductInput } from "./functions.js";
 import { modalClose, modalSave } from "./var.js";
 
 // Вивід на сторінку список відео
-function showVideo(arr = []) {
+export function showVideo(arr = []) {
     const tbody = document.querySelector('tbody');
     tbody.innerHTML = ""
 
@@ -16,7 +16,7 @@ function showVideo(arr = []) {
             createHTMLElement("td", undefined, date),
             createHTMLElement("td", undefined, url),
             createHTMLElement("td", undefined, `<span data-key="${id}" class="icon">&#9998;</span>`, undefined, editVideoListEvent),
-            createHTMLElement("td", undefined, `<span data-key="${id}" class='icon'>&#10006;</span>`, undefined, delVideoItemtEvent),
+            createHTMLElement("td", undefined, `<span data-key="${id}" class='icon'>&#10006;</span>`, undefined, deleteItem),
         ]
         element[3].style.maxWidth = '700px'
         element[3].style.overflow = 'hidden'
@@ -27,7 +27,7 @@ function showVideo(arr = []) {
 }
 
 // Читаємо з localStorage
-if (localStorage.video) {
+if (window.location.href.indexOf('video') !== -1 && localStorage.video) {
     showVideo(JSON.parse(localStorage.video));
 }
 

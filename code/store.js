@@ -1,9 +1,9 @@
-import { hideModalEvent, showModalEvent } from "./events.js";
+import {deleteItem, hideModalEvent, showModalEvent} from "./events.js";
 import { createHTMLElement, createEditProductInput } from "./functions.js";
 import { modalClose, modalSave } from "./var.js";
 
 //Вивід на сторінку позицій меню
-function showStoreProduct(arr = []) {
+ export function showStoreProduct(arr = []) {
     //Знайшли tbody для виводу інформації по позиціям 
     const tbody = document.querySelector("tbody");
     tbody.innerHTML = ""
@@ -19,7 +19,7 @@ function showStoreProduct(arr = []) {
             createHTMLElement("td", undefined, `<span data-key="${id}" class="icon">&#9998;</span>`, undefined, editProductStoreEvent),
             createHTMLElement("td", undefined, status ? "<span class='icon green'>&#10004;</span>" : "<span class='icon red'>&#10008;</span>"),
             createHTMLElement("td", undefined, date),
-            createHTMLElement("td", undefined, `<span data-key="${id}" class='icon'>&#10006;</span>`, undefined, delProductItemEvent),
+            createHTMLElement("td", undefined, `<span data-key="${id}" class='icon'>&#10006;</span>`, undefined, deleteItem),
         ]
         tbody.append(tr);
         tr.append(...element)
@@ -27,7 +27,7 @@ function showStoreProduct(arr = []) {
 }
 
 // Читаємо з localStorage
-if (localStorage.store) {
+if (window.location.href.indexOf('store') !== -1 && localStorage.store) {
     showStoreProduct(JSON.parse(localStorage.store));
 }
 
@@ -109,14 +109,14 @@ function newSaveProductInfo(newObj, oldObj) {
 
 
 // My code
-function delProductItemEvent(e) {
-    const tbody = document.querySelector("tbody");
-    if(!e.target.tagName === "SPAN") return;
-    const span = e.target;
-    let store = JSON.parse(localStorage.store);
-
-    store = store.filter(el => el.id !== span.dataset.key);
-    tbody.innerHTML = "";
-    showStoreProduct(store);
-    localStorage.store = JSON.stringify(store);
-}
+// function delProductItemEvent(e) {
+//     const tbody = document.querySelector("tbody");
+//     if(!e.target.tagName === "SPAN") return;
+//     const span = e.target;
+//     let store = JSON.parse(localStorage.store);
+//
+//     store = store.filter(el => el.id !== span.dataset.key);
+//     tbody.innerHTML = "";
+//     showStoreProduct(store);
+//     localStorage.store = JSON.stringify(store);
+// }

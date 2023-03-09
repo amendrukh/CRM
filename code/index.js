@@ -1,7 +1,7 @@
 import { getLogin, getPassword, modalClose, modalSave } from "./var.js";
 import { changeInputEvent, userLoginEvent, showModalEvent, hideModalEvent, saveData, exportDataEvent } from "./events.js";
 import { req, categorySelect } from "./functions.js";
-import { saveVideoAndRestData } from "./code.js";
+
 
 const EXPORT = document.querySelector("#export");
 const REQ = document.getElementById("req");
@@ -43,7 +43,7 @@ try {
     /*
     Ваші події 
     */
-    modalSave.addEventListener('click', saveVideoAndRestData)
+    // modalSave.addEventListener('click', saveVideoAndRestData)
 
 
 } catch (e) {

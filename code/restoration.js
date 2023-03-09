@@ -11,16 +11,16 @@ console.log(JSON.parse(localStorage.restorationBD));
         const tbody = document.querySelector("tbody");
         tbody.innerHTML = ""
 
-        arr.forEach(function ({productName, quantity, price, stopList, date, id}, i) {
+        arr.forEach(function ({productName, productQuantity, price, status, date, id}, i) {
             //Назва	Залишок	Ціна	Редагувати	Статус	Дата додавання	Видалити
             const tr = createHTMLElement("tr");
             const element = [
                 createHTMLElement("td", undefined, i + 1),
                 createHTMLElement("td", undefined, productName),
-                createHTMLElement("td", undefined, quantity),
+                createHTMLElement("td", undefined, productQuantity),
                 createHTMLElement("td", undefined, price),
                 createHTMLElement("td", undefined, `<span data-key="${id}" class="icon">&#9998;</span>`, undefined, editRestoranMenuEvent),
-                createHTMLElement("td", undefined, stopList ? "<span class='icon green'>&#10004;</span>" : "<span class='icon red'>&#10008;</span>"),
+                createHTMLElement("td", undefined, status ? "<span class='icon green'>&#10004;</span>" : "<span class='icon red'>&#10008;</span>"),
                 createHTMLElement("td", undefined, date),
                 createHTMLElement("td", undefined, `<span data-key="${id}" class='icon'>&#10006;</span>`, undefined, deleteItem),
             ]
@@ -29,7 +29,7 @@ console.log(JSON.parse(localStorage.restorationBD));
         })
     }
 
-    if (localStorage.restorationBD) {
+    if (window.location.href.indexOf('restoran') !== -1 && localStorage.restorationBD) {
         showRestoranMenu(JSON.parse(localStorage.restorationBD));
     }
 
@@ -97,6 +97,8 @@ function newSaveMenuInfo(newObj, oldObj) {
                 return
             case "productimageUrl": obj.productimageUrl = input.value;
                 return
+            case "productQuantity": obj.productQuantity = input.value;
+                return
             case "keywords": obj.keywords = input.value;
                 return
         }
@@ -112,10 +114,10 @@ function newSaveMenuInfo(newObj, oldObj) {
 }
 
 
-function delRestoranMenuEvent(e) {
-    const rest = JSON.parse(localStorage.restorationBD);
-
-    e.target.closest('tr').remove();
-    rest.splice(rest.findIndex(({ id }) => e.target.dataset.key === id), 1)
-    localStorage.restorationBD = JSON.stringify(rest);
-}
+// function delRestoranMenuEvent(e) {
+//     const rest = JSON.parse(localStorage.restorationBD);
+//
+//     e.target.closest('tr').remove();
+//     rest.splice(rest.findIndex(({ id }) => e.target.dataset.key === id), 1)
+//     localStorage.restorationBD = JSON.stringify(rest);
+// }
