@@ -1,7 +1,7 @@
 import { getLogin, getPassword } from "./var.js";
 import { generationId, validate, createInputSring, dateNow } from "./functions.js";
 import { StoreElementCRM } from "./class.js";
-import {showRestoranMenu} from "./restoration";
+import { showRestoranMenu } from "./restoration.js";
 
 
 
