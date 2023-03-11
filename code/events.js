@@ -1,11 +1,9 @@
-import { getLogin, getPassword } from "./var.js";
-import { generationId, validate, createInputSring, dateNow } from "./functions.js";
-import { StoreElementCRM, restoranElementCrm, videoElementCrm } from "./class.js";
-import { showRestoranMenu } from "./restoration.js";
+import {getLogin, getPassword} from "./var.js";
+import {generationId, validate, createInputSring, dateNow} from "./functions.js";
+import {StoreElementCRM, restoranElementCrm, videoElementCrm} from "./class.js";
+import {showRestoranMenu} from "./restoration.js";
 import {showStoreProduct} from "./store.js"
 import {showVideo} from "./video.js";
-
-
 
 
 //changeInputEvent Object
@@ -65,7 +63,7 @@ function changeCategoryEvent(e) {
        </form>
        `)
 
-    }else if (e.target.value === "Відео хостинг"){
+    } else if (e.target.value === "Відео хостинг") {
         modal__body.insertAdjacentHTML("beforeend", `
         <form>
          ${createInputSring("text", "Назва відео", generationId(), "productName")}
@@ -75,7 +73,7 @@ function changeCategoryEvent(e) {
          ${createInputSring("text", "Ключеві слова для пошуку. Розділяти комою", generationId(), "keywords")}
         </form>
         `)
-    }else if (e.target.value === "Ресторан"){
+    } else if (e.target.value === "Ресторан") {
         modal__body.insertAdjacentHTML("beforeend", `
         <form>
          ${createInputSring("text", "Назва Страви", generationId(), "productName")}
@@ -169,7 +167,7 @@ function saveData() {
             })
 
             const rest = JSON.parse(localStorage.restorationBD);
-            rest.push(new restoranElementCrm(obj.productName, obj.productWeigth, obj.ingridients,obj.productQuantity, obj.description, obj.price, obj.productimageUrl, obj.keywords, dateNow, generationId))
+            rest.push(new restoranElementCrm(obj.productName, obj.productWeigth, obj.ingridients, obj.productQuantity, obj.description, obj.price, obj.productimageUrl, obj.keywords, dateNow, generationId))
             localStorage.restorationBD = JSON.stringify(rest);
         }
     } catch (e) {
@@ -179,7 +177,7 @@ function saveData() {
 
 function deleteItem(e) {
     try {
-        if(e.target.tagName !== "SPAN") return;
+        if (e.target.tagName !== "SPAN") return;
         let span = e.target;
         if (window.location.href.indexOf('restoran') !== -1 && localStorage.restorationBD) {
             let restorationBD = JSON.parse(localStorage.restorationBD);
@@ -202,14 +200,18 @@ function deleteItem(e) {
     }
 }
 
-export function exportDataEvent () {
+export function exportDataEvent() {
 
     let windowData = open("/window", "test");
     console.log(document.querySelector(".show-json"));
-    
-    setTimeout(()=>{
+
+    setTimeout(() => {
         windowData.close()
     }, 5000)
 }
 
-export { changeInputEvent, userLoginEvent, showModalEvent, changeCategoryEvent, hideModalEvent, saveData, deleteItem }
+export function closeLink() {
+    document.location = "/authorization";
+}
+
+export {changeInputEvent, userLoginEvent, showModalEvent, changeCategoryEvent, hideModalEvent, saveData, deleteItem}

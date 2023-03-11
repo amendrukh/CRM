@@ -1,11 +1,19 @@
-import { getLogin, getPassword, modalClose, modalSave } from "./var.js";
-import { changeInputEvent, userLoginEvent, showModalEvent, hideModalEvent, saveData, exportDataEvent } from "./events.js";
-import { req, categorySelect } from "./functions.js";
+import {getLogin, getPassword, modalClose, modalSave} from "./var.js";
+import {
+    changeInputEvent,
+    userLoginEvent,
+    showModalEvent,
+    hideModalEvent,
+    saveData,
+    exportDataEvent,
+    closeLink
+} from "./events.js";
+import {req, categorySelect} from "./functions.js";
 
 
 const EXPORT = document.querySelector("#export");
 const REQ = document.getElementById("req");
-const CLOSE =  document.querySelector("#close");
+const CLOSE = document.querySelector("#close");
 
 if (!sessionStorage.isLogin && !document.location.pathname.includes("/authorization")) {
     document.location = "/authorization";
@@ -51,15 +59,15 @@ try {
 
 }
 
-try{
+
+console.log(CLOSE)
+try {
     EXPORT.addEventListener("click", exportDataEvent);
     REQ.addEventListener("click", () => {
         req("fetch", "https://jsonplaceholder.typicode.com/comments")
     })
-    CLOSE.addEventListener("click", ((e) => {
-        document.location = "/authorization";
-    }))
-}catch(e){
+    CLOSE.addEventListener("click", closeLink)
+} catch (e) {
 }
 
 console.log(getLogin, getPassword);

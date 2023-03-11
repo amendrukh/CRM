@@ -169,6 +169,10 @@ table .icon.green{
     animation: ok 1s linear;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 @keyframes ok {
     from{
         background-color: rgba(0, 255, 0, 1);
