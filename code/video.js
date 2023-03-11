@@ -91,7 +91,7 @@ function newSaveVideoInfo(newObj, oldObj) {
                 return
             case "description": obj.description = input.value;
                 return
-            case "keywords": obj.keywords = input.value;
+            case "keywords": obj.keywords = [input.value];
                 return
         }
     })
